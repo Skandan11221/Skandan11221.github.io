@@ -2,9 +2,35 @@
 <html>
 <head>
     <title>Project Portfolio</title>
+    <style>
+        body {
+            /* Replace 'background.jpg' with your exact image filename */
+            background-image: url('background.jpg');
+            
+            /* These properties ensure the image fits the screen perfectly */
+            background-size: cover;       /* Scales the image to cover the whole screen */
+            background-position: center;  /* Keeps the focal point centered */
+            background-attachment: fixed; /* Keeps the background still when you scroll */
+            background-repeat: no-repeat; /* Prevents the image from tiling like a mosaic */
+            
+            color: #e4e4e7; 
+            font-family: sans-serif;
+            margin: 40px;
+        }
+
+        /* A dark, semi-transparent box to make text readable over the image */
+        .content-box {
+            background-color: rgba(18, 18, 20, 0.70); /* 85% opaque dark box */
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 800px;
+        }
+    </style>
 </head>
 <body>
-    <h1>System Live</h1>
-    <p>Testing GitHub Pages deployment framework.</p>
+    <div class="content-box">
+        <h1>System Live</h1>
+        <p>Testing GitHub Pages deployment framework with a custom background image.</p>
+    </div>
 </body>
 </html>

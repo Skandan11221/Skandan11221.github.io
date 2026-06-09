@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skandan | Computing</title>
     <style>
+        /* Global Styles */
+        * { -webkit-font-smoothing: antialiased; box-sizing: border-box; }
         body {
             margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -13,11 +15,11 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            padding-top: 150px;
             overflow-x: hidden;
-            padding-top: 130px; /* Pushes content down so the top bar doesn't overlap it */
         }
 
-        /* The Animated Breathing Background */
+        /* Animated Breathing Background */
         .animated-bg {
             position: fixed;
             top: -5%; left: -5%;
@@ -28,60 +30,61 @@
             z-index: -1;
             animation: breathe 20s infinite alternate ease-in-out; 
         }
-
         @keyframes breathe {
             0% { transform: scale(1); }
             100% { transform: scale(1.08); }
         }
 
-        /* The Top Elliptical Navigation Bar (Dynamic Island) */
+        /* Dynamic Island Navigation */
         .top-nav {
             position: fixed;
             top: 25px;
-            
-            /* Glassmorphism Styling */
             background: rgba(40, 40, 45, 0.45);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
             border: 1px solid rgba(255, 255, 255, 0.15);
             box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            
-            border-radius: 50px; /* The perfect pill shape */
-            padding: 10px 20px;
-            
+            border-radius: 50px;
+            padding: 8px;
             display: flex;
-            gap: 15px; /* Spacing between the links */
-            z-index: 100; /* Keeps it above all other content */
+            gap: 8px;
+            z-index: 100;
         }
-
-        /* Individual Text Links in the Bar */
-        .top-nav a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            font-size: 0.95em;
-            font-weight: 500;
-            padding: 8px 16px;
-            border-radius: 30px;
-            transition: all 0.3s ease;
-        }
-
-        /* The Soft Highlight When Hovering Over a Link */
-        .top-nav a:hover {
+        .nav-link {
             color: #ffffff;
-            background: rgba(255, 255, 255, 0.15); 
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+            white-space: nowrap;
         }
+        .nav-link:hover {
+            width: auto;
+            padding-right: 15px;
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .nav-icon { min-width: 45px; display: flex; justify-content: center; font-size: 1.1em; }
+        .nav-label {
+            font-size: 0.9em;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        .nav-link:hover .nav-label { opacity: 1; transform: translateX(0); }
 
-        /* The Grid Layout for Your Page Previews */
+        /* Content Grid */
         .content-grid {
             max-width: 900px;
             width: 90%;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 25px;
-            margin-bottom: 60px;
         }
-
-        /* The Frosted Glass Cards */
         .page-card {
             background: rgba(30, 30, 35, 0.35);
             backdrop-filter: blur(16px);
@@ -91,31 +94,7 @@
             padding: 30px;
             transition: transform 0.3s ease;
         }
-
-        .page-card:hover {
-            transform: translateY(-4px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-        }
-
-        .page-card h2 {
-            margin-top: 0;
-            font-size: 1.3em;
-            font-weight: 600;
-            letter-spacing: -0.5px;
-        }
-
-        .page-card p {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.95em;
-            line-height: 1.6;
-            margin-bottom: 0;
-        }
-        
-        /* Stretches the About section across both columns */
-        .full-width {
-            grid-column: 1 / -1;
-            text-align: center;
-        }
+        .page-card:hover { transform: translateY(-4px); border: 1px solid rgba(255, 255, 255, 0.25); }
     </style>
 </head>
 <body>
@@ -123,40 +102,35 @@
     <div class="animated-bg"></div>
 
     <nav class="top-nav">
-        <a href="about.html">About & Study</a>
-        <a href="software.html">Software Projects</a>
-        <a href="physical.html">Physical Builds</a>
-        <a href="favourites.html">Favourites</a>
-        <a href="bucketlist.html">Bucketlist</a>
+        <a href="about.html" class="nav-link">
+            <span class="nav-icon">🫵🏾</span>
+            <span class="nav-label">About</span>
+        </a>
+        <a href="cyber.html" class="nav-link">
+            <span class="nav-icon">🖥️</span>
+            <span class="nav-label">Cyber Projects</span>
+        </a>
+        <a href="physical.html" class="nav-link">
+            <span class="nav-icon">⚙️</span>
+            <span class="nav-label">Physical Builds</span>
+        </a>
+        <a href="favourites.html" class="nav-link">
+            <span class="nav-icon">💕</span>
+            <span class="nav-label">Favorites</span>
+        </a>
+        <a href="bucketlist.html" class="nav-link">
+            <span class="nav-icon">🪣</span>
+            <span class="nav-label">Bucketlist</span>
+        </a>
     </nav>
 
     <div class="content-grid">
-        
-        <div class="page-card full-width">
-            <h2>Current Employment & Study</h2>
-            <p>Computing at the Australian National University. Specializing in Cyber Security, Intelligent Systems, and Finance.</p>
+        <div class="page-card" style="grid-column: 1 / -1; text-align: center;">
+            <h2>Skandan | Computing at ANU</h2>
+            <p>Cyber Security & Intelligent Systems Major • Finance & Corporate Sustainability Minor</p>
         </div>
-
-        <div class="page-card">
-            <h2>Cyber & Coding Projects</h2>
-            <p>Deploying hardware-integrated NIDS servers and developing low-level CPU microarchitecture extensions for ADDI instructions.</p>
-        </div>
-
-        <div class="page-card">
-            <h2>Physical Builds</h2>
-            <p>Current mechanical teardown and complete rebuild of the bike.</p>
-        </div>
-
-        <div class="page-card">
-            <h2>Favourite Things</h2>
-            <p>Exploring high-performance automotive engineering, Mazda Kodo design aesthetics, and the Nissan GT-R Nismo Final Edition.</p>
-        </div>
-
-        <div class="page-card">
-            <h2>Bucketlist</h2>
-            <p>Future logistical goals, including navigating the import of a 2015 first-generation facelift Toyota Fortuner via Dubai.</p>
-        </div>
-
+        <div class="page-card"><h2>Software Projects</h2><p>NIDS development, microarchitecture extensions.</p></div>
+        <div class="page-card"><h2>Physical Builds</h2><p>Mechanical teardown and bike restoration.</p></div>
     </div>
 
 </body>

@@ -12,9 +12,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             min-height: 100vh;
             overflow-x: hidden;
+            padding-top: 130px; /* Pushes content down so the top bar doesn't overlap it */
         }
 
         /* The Animated Breathing Background */
@@ -34,86 +34,87 @@
             100% { transform: scale(1.08); }
         }
 
-        /* The Main Header Text */
-        .hero-text {
-            text-align: center;
-            margin-bottom: 50px;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
-        }
-
-        .hero-text h1 {
-            font-size: 3.5em;
-            margin: 0 0 10px 0;
-            font-weight: 700;
-            letter-spacing: -1px;
-        }
-
-        .hero-text p {
-            font-size: 1.2em;
-            margin: 5px 0;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 400;
-        }
-
-        /* The Side-by-Side Flexbox Container */
-        .dock-container {
-            display: flex;
-            flex-direction: row;
-            gap: 20px;
-        }
-
-        /* The Hover-Expanding Islands */
-        .island-link {
+        /* The Top Elliptical Navigation Bar (Dynamic Island) */
+        .top-nav {
+            position: fixed;
+            top: 25px;
+            
             /* Glassmorphism Styling */
-            background: rgba(80, 80, 85, 0.35);
+            background: rgba(40, 40, 45, 0.45);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
             
-            /* The Starting Shape (Small Circle) */
-            width: 65px;
-            height: 65px;
-            border-radius: 50px;
+            border-radius: 50px; /* The perfect pill shape */
+            padding: 10px 20px;
             
-            text-decoration: none; /* Removes the default blue link underline */
-            color: white;
             display: flex;
-            align-items: center;
-            overflow: hidden; /* Keeps text hidden when collapsed */
-            
-            /* The Spring Animation */
-            transition: all 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+            gap: 15px; /* Spacing between the links */
+            z-index: 100; /* Keeps it above all other content */
         }
 
-        /* What happens when you hover over it */
-        .island-link:hover {
-            width: 220px; /* Expands horizontally into a pill */
-            background: rgba(100, 100, 105, 0.5);
-            transform: translateY(-3px); /* Floats up slightly */
-        }
-
-        /* The Icon that always shows */
-        .icon {
-            min-width: 65px; /* Keeps the icon perfectly centered in the circle */
-            text-align: center;
-            font-size: 1.5em;
-        }
-
-        /* The Text that reveals on hover */
-        .label {
-            font-size: 1.1em;
+        /* Individual Text Links in the Bar */
+        .top-nav a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.95em;
             font-weight: 500;
-            white-space: nowrap; /* Prevents text from stacking vertically */
-            opacity: 0;
-            transform: translateX(-10px);
+            padding: 8px 16px;
+            border-radius: 30px;
             transition: all 0.3s ease;
         }
 
-        .island-link:hover .label {
-            opacity: 1;
-            transform: translateX(0);
-            transition-delay: 0.1s; /* Waits a split second for the pill to expand first */
+        /* The Soft Highlight When Hovering Over a Link */
+        .top-nav a:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.15); 
+        }
+
+        /* The Grid Layout for Your Page Previews */
+        .content-grid {
+            max-width: 900px;
+            width: 90%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        /* The Frosted Glass Cards */
+        .page-card {
+            background: rgba(30, 30, 35, 0.35);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .page-card:hover {
+            transform: translateY(-4px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .page-card h2 {
+            margin-top: 0;
+            font-size: 1.3em;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .page-card p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+        
+        /* Stretches the About section across both columns */
+        .full-width {
+            grid-column: 1 / -1;
+            text-align: center;
         }
     </style>
 </head>
@@ -121,28 +122,40 @@
 
     <div class="animated-bg"></div>
 
-    <div class="hero-text">
-        <h1>Skandan</h1>
-        <p>Computing @ ANU</p>
-        <p style="font-size: 0.95em; opacity: 0.8;">Cyber Security • Intelligent Systems • Finance</p>
-    </div>
+    <nav class="top-nav">
+        <a href="about.html">About & Study</a>
+        <a href="software.html">Software Projects</a>
+        <a href="physical.html">Physical Builds</a>
+        <a href="favourites.html">Favourites</a>
+        <a href="bucketlist.html">Bucketlist</a>
+    </nav>
 
-    <div class="dock-container">
+    <div class="content-grid">
         
-        <a href="about.html" class="island-link">
-            <span class="icon">👤</span>
-            <span class="label">About Me</span>
-        </a>
+        <div class="page-card full-width">
+            <h2>Current Employment & Study</h2>
+            <p>Computing at the Australian National University. Specializing in Cyber Security, Intelligent Systems, and Finance.</p>
+        </div>
 
-        <a href="projects/nids.html" class="island-link">
-            <span class="icon">🛡️</span>
-            <span class="label">NIDS Project</span>
-        </a>
+        <div class="page-card">
+            <h2>Cyber & Coding Projects</h2>
+            <p>Deploying hardware-integrated NIDS servers and developing low-level CPU microarchitecture extensions for ADDI instructions.</p>
+        </div>
 
-        <a href="https://github.com/skandan" target="_blank" class="island-link">
-            <span class="icon">💻</span>
-            <span class="label">GitHub</span>
-        </a>
+        <div class="page-card">
+            <h2>Physical Builds</h2>
+            <p>Current mechanical teardown and complete rebuild of the bike.</p>
+        </div>
+
+        <div class="page-card">
+            <h2>Favourite Things</h2>
+            <p>Exploring high-performance automotive engineering, Mazda Kodo design aesthetics, and the Nissan GT-R Nismo Final Edition.</p>
+        </div>
+
+        <div class="page-card">
+            <h2>Bucketlist</h2>
+            <p>Future logistical goals, including navigating the import of a 2015 first-generation facelift Toyota Fortuner via Dubai.</p>
+        </div>
 
     </div>
 

@@ -50,14 +50,26 @@ body {
     overflow: hidden;
     display: flex;
     align-items: center;
-    transition: width 1.2s linear, background 0.8s ease;
+    /* Maintain the cubic-bezier for that "springy" feel */
+    transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.4s ease;
     white-space: nowrap;
     text-decoration: none;
     color: #fff;
+    /* Force the content to be hidden until it's fully grown to prevent text jitter */
+    will-change: width; 
 }
-.nav-link:hover { width: 180px; padding-right: 15px; background: rgba(255, 255, 255, 0.15); }
+
+.nav-link:hover {
+    width: max-content; 
+    padding-right: 20px;
+    background: rgba(255, 255, 255, 0.15);
+}
 .nav-icon { min-width: 45px; display: flex; justify-content: center; }
-.nav-label { opacity: 0; transition: opacity 0.8s linear 0.2s; }
+.nav-label { 
+    opacity: 0; 
+    transition: opacity 0.8s linear 0.2s; 
+    padding-left: 5px; /* Adds a tiny breathing room between the icon and text */
+}
 .nav-link:hover .nav-label { opacity: 1; }
 
 /* Grid Layout */
